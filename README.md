@@ -1,7 +1,9 @@
 # Open Store API
 
-[![Build Status](https://travis-ci.com/rafael-neri/openstore-api.svg)](https://travis-ci.org/rafael-neri/openstore-api)
-[![License](https://img.shields.io/packagist/l/rafael-neri/openstore-api)](https://packagist.org/packages/rafael-neri/openstore-api)
+![Travis (.org) branch](https://img.shields.io/travis/Open-Store-Apps/openstore-api/master?label=Build)
+![GitHub issues](https://img.shields.io/github/issues-raw/Open-Store-Apps/openstore-api?label=Open%20Issues)
+![GitHub](https://img.shields.io/github/license/Open-Store-Apps/openstore-api?label=License)
+![GitHub Sponsors](https://img.shields.io/github/sponsors/Open-Store-Apps?label=Sponsors)
 
 Description
 
