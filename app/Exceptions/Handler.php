@@ -39,24 +39,11 @@ class Handler extends ExceptionHandler
      */
     public function report(Throwable $exception)
     {
-        /*if(env('APP_ENV') == 'production') {
+        if(env('APP_ENV') == 'production') {
             // TODO: Salvar no System Log
-        } else {*/
+        } else {
             parent::report($exception);
-        //}
+        }
     }
-
-    /**
-     * Render an exception into an HTTP response.
-     *
-     * @param  Request  $request
-     * @param Throwable $e
-     * @return Response|JsonResponse
-     *
-     * @throws Throwable
-     */
-    public function render($request, Throwable $e)
-    {
-        return parent::render($request, $e);
-    }
+    
 }
