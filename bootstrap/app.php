@@ -1,10 +1,42 @@
 <?php
 
 use Laravel\Lumen\Bootstrap\LoadEnvironmentVariables;
+use Laravel\Lumen\Application;
 
 require_once __DIR__.'/../vendor/autoload.php';
 
-(new LoadEnvironmentVariables(dirname(__DIR__)))->bootstrap();
+$curent_dir = __DIR__;
+$app_dir = dirname($curent_dir);
+
+/*
+|--------------------------------------------------------------------------
+| Load Variables Environment
+|--------------------------------------------------------------------------
+*/
+
+$app_env = env('APP_ENV');
+$env_file = '.env.local';
+
+switch ($app_env) {
+    case 'production':
+        $env_file = '.env.production';
+        break;
+    default:
+        break;
+}
+
+if(!file_exists("{$curent_dir}/../{$env_file}")) {
+    die('Cannot Load Env. Please check your file.');
+}
+
+$env = new LoadEnvironmentVariables($app_dir, $env_file);
+$env->bootstrap();
+
+/*
+|--------------------------------------------------------------------------
+| Set Default
+|--------------------------------------------------------------------------
+*/
 
 date_default_timezone_set(env('APP_TIMEZONE', 'UTC'));
 
@@ -19,12 +51,9 @@ date_default_timezone_set(env('APP_TIMEZONE', 'UTC'));
 |
 */
 
-$app = new Laravel\Lumen\Application(
-    dirname(__DIR__)
-);
+$app = new Application($app_dir);
 
 $app->withFacades();
-
 $app->withEloquent();
 
 /*
@@ -103,10 +132,9 @@ $app->middleware([
 |
 */
 
-$app->router->group([
-    'namespace' => 'App\Http\Controllers',
-], function ($router) {
-    require __DIR__ . '/../routes/api.php';
-});
+$files = glob("{$app_dir}/routes/*.php");
+foreach ($files as $file) {
+    require_once($file);
+}
 
 return $app;
