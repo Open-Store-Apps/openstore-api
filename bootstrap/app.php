@@ -17,12 +17,8 @@ $app_dir = dirname($curent_dir);
 $app_env = env('APP_ENV');
 $env_file = '.env.local';
 
-switch ($app_env) {
-    case 'production':
-        $env_file = '.env.production';
-        break;
-    default:
-        break;
+if($app_env == 'production') {
+    $env_file = '.env.production';
 }
 
 if(!file_exists("{$curent_dir}/../{$env_file}")) {
