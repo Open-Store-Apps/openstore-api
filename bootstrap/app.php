@@ -15,10 +15,10 @@ $app_dir = dirname($curent_dir);
 */
 
 $app_env = env('APP_ENV');
-$env_file = '.env.local';
+$env_file = '.env.dev';
 
 if($app_env == 'production') {
-    $env_file = '.env.production';
+    $env_file = '.env.prod';
 }
 
 if(!file_exists("{$curent_dir}/../{$env_file}")) {
